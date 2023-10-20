@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import redux from 'redux';
 import PropTypes from 'prop-types';
 
 MediaInput.propTypes = {
