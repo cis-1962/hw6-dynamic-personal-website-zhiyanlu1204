@@ -43,6 +43,8 @@ export default function Blog() {
           }}
           onSaveEdit={onSaveNewPost}
           onCancelEdit={onCancelNewPost}
+          shouldShowDelete={false}
+          onDeletePost={null}
         />
       ) : null}
       {postsArray.map((post) => (

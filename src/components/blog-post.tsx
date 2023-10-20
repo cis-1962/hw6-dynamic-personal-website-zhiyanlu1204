@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Post, updatePost } from './post-slice';
+import { Post, updatePost, deletePost } from './post-slice';
 import MediaInput from './input-media';
 
 export default function BlogPost({ post }: { post: Post }) {
@@ -23,6 +23,12 @@ export default function BlogPost({ post }: { post: Post }) {
     console.log('canceled post edit');
   };
 
+  const onDeletePost = () => {
+    setIsEditPost(false);
+    console.log('deleting post');
+    dispatch(deletePost(post));
+  };
+
   return (
     <div>
       {isEditPost ? (
@@ -31,6 +37,8 @@ export default function BlogPost({ post }: { post: Post }) {
           existingPost={post}
           onSaveEdit={onSaveInputEdit}
           onCancelEdit={onCancelPostEdit}
+          shouldShowDelete
+          onDeletePost={onDeletePost}
         />
       ) : (
         <div>

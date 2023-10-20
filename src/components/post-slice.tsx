@@ -38,9 +38,19 @@ export const postSlice = createSlice({
         }
       });
     },
+    deletePost: (state, action: PayloadAction<Post>) => {
+      const deletedPost: Post = action.payload;
+      state.posts.forEach((post, i) => {
+        if (post.id === deletedPost.id) {
+          console.log('deleting post in redux');
+          state.posts[i] = deletedPost;
+          state.posts.splice(i, 1);
+        }
+      });
+    },
   },
 });
 
-export const { incID, createPost, updatePost } = postSlice.actions;
+export const { incID, createPost, updatePost, deletePost } = postSlice.actions;
 
 export default postSlice.reducer;

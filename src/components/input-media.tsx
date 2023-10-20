@@ -9,11 +9,15 @@ export default function MediaInput({
   existingPost,
   onSaveEdit,
   onCancelEdit,
+  shouldShowDelete,
+  onDeletePost,
 }: {
   shouldShowTitleInput: boolean;
   existingPost: Post;
   onSaveEdit: (post: Post) => void;
   onCancelEdit: () => void;
+  shouldShowDelete: boolean;
+  onDeletePost: (() => void) | null;
 }) {
   const [title, setTitle] = useState(existingPost.title);
   const [imageUrl, setImageUrl] = useState(existingPost.imageUrl);
@@ -87,6 +91,15 @@ export default function MediaInput({
         </label>
         <input type="button" onClick={() => onSaveLocalEdit()} value="Save" />
         <input type="button" onClick={() => onCancelEdit()} value="Cancel" />
+        {shouldShowDelete ? (
+          <input
+            type="button"
+            onClick={() => {
+              if (onDeletePost != null) onDeletePost();
+            }}
+            value="Delete"
+          />
+        ) : null}
       </form>
     </div>
   );
