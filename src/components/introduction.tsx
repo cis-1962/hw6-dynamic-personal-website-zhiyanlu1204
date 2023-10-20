@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
-import MediaInput from './media-input';
+import redux from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from '../app/store';
+import { Post, createPost } from './post-slice';
+import MediaInput from './input-media';
 
 export default function Introduction() {
   const [showEditButton, setShowEditButton] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
+
+  // const postsArray = useSelector((state: RootState) => state.mediaInput.title);
+
+  const onHideMediaInputUI = () => {
+    setIsEdit(false);
+    setShowEditButton(true);
+  };
 
   const onClickEdit = () => {
     console.log('clicked edit');
@@ -11,13 +22,11 @@ export default function Introduction() {
     setIsEdit(true);
   };
 
-  const onHideMediaInputUI = () => {
-    setIsEdit(false);
-    setShowEditButton(true);
-  };
-
-  const onSaveInputEdit = () => {
+  const onSaveInputEdit = (post: Post) => {
     onHideMediaInputUI();
+    /**
+     * TODO: IMPLEMENT INTRO LOGIC: new POST is created
+     */
   };
 
   const onCancelInputEdit = () => {
@@ -32,13 +41,15 @@ export default function Introduction() {
           Edit
         </button>
       ) : null}
-      {isEdit ? (
+      {/* {isEdit ? (
         <MediaInput
           shouldShowTitleInput={false}
+          isNewPost
+          oldPostID={-1}
           onSaveEdit={onSaveInputEdit}
           onCancelEdit={onCancelInputEdit}
         />
-      ) : null}
+      ) : null} */}
     </div>
   );
 }
