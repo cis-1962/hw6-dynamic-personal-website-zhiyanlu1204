@@ -13,6 +13,7 @@ const initialState = {
   // imageUrl: 'Enter image url',
   // description: 'Enter description',
   posts: [] as Post[],
+  introduction: { id: 0, title: '', imageUrl: '', description: '' } as Post,
   id: 0,
 };
 
@@ -48,9 +49,15 @@ export const postSlice = createSlice({
         }
       });
     },
+    editIntro: (state, action: PayloadAction<Post>) => {
+      const newIntro = action.payload;
+      state.introduction.imageUrl = newIntro.imageUrl;
+      state.introduction.description = newIntro.description;
+    },
   },
 });
 
-export const { incID, createPost, updatePost, deletePost } = postSlice.actions;
+export const { incID, createPost, updatePost, deletePost, editIntro } =
+  postSlice.actions;
 
 export default postSlice.reducer;

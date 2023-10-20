@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import redux from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../app/store';
-import { Post, createPost } from './post-slice';
+import { Post, editIntro } from './post-slice';
 import MediaInput from './input-media';
 
 export default function Introduction() {
   const [showEditButton, setShowEditButton] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
+  const [hasInitialized, setHasInitialized] = useState(false);
 
-  // const postsArray = useSelector((state: RootState) => state.mediaInput.title);
+  const intro: Post = useSelector(
+    (state: RootState) => state.post.introduction,
+  );
+  const dispatch = useDispatch();
 
   const onHideMediaInputUI = () => {
     setIsEdit(false);
@@ -24,9 +28,8 @@ export default function Introduction() {
 
   const onSaveInputEdit = (post: Post) => {
     onHideMediaInputUI();
-    /**
-     * TODO: IMPLEMENT INTRO LOGIC: new POST is created
-     */
+    dispatch(editIntro(post));
+    setHasInitialized(true);
   };
 
   const onCancelInputEdit = () => {
@@ -41,15 +44,22 @@ export default function Introduction() {
           Edit
         </button>
       ) : null}
-      {/* {isEdit ? (
+      {isEdit ? (
         <MediaInput
           shouldShowTitleInput={false}
-          isNewPost
-          oldPostID={-1}
+          existingPost={intro}
           onSaveEdit={onSaveInputEdit}
           onCancelEdit={onCancelInputEdit}
+          shouldShowDelete={false}
+          onDeletePost={null}
         />
-      ) : null} */}
+      ) : null}
+      {hasInitialized ? (
+        <div>
+          <img src={intro.imageUrl} alt="No img :)" width="400" height="500" />
+          <p>{intro.description}</p>
+        </div>
+      ) : null}
     </div>
   );
 }
