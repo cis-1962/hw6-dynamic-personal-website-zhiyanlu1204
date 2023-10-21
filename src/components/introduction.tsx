@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../app/store';
 import { Post, editIntro } from './post-slice';
 import MediaInput from './input-media';
+import 'tailwindcss/tailwind.css';
 
 export default function Introduction() {
   const [showEditButton, setShowEditButton] = useState(true);
