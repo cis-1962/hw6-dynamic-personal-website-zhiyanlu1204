@@ -27,9 +27,13 @@ export default function Blog() {
   };
 
   return (
-    <div>
-      <h1>Blog Posts</h1>
-      <button type="button" onClick={() => onClickAddPost()}>
+    <div className="content-evenly p-5">
+      <h1 className="text-center mb-4 font-extrabold text-4xl">Blog Posts</h1>
+      <button
+        className="text-white bg-purple-500 hover:bg-purple-700 px-2 py-2 ml-auto rounded flex flex-col items-center mr-6"
+        type="button"
+        onClick={() => onClickAddPost()}
+      >
         Add Post
       </button>
       {isAddPost ? (
@@ -47,9 +51,13 @@ export default function Blog() {
           onDeletePost={null}
         />
       ) : null}
-      {postsArray.map((post) => (
-        <BlogPost key={post.id} post={post} />
-      ))}
+      <div className="grid grid-cols-2 divide-x">
+        {postsArray.map((post) => (
+          <div>
+            <BlogPost key={post.id} post={post} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -37,10 +37,16 @@ export default function Introduction() {
   };
 
   return (
-    <div>
-      <h1>Hey this is me!</h1>
+    <div className="p-5">
+      <h1 className="text-center mb-4 font-extrabold text-4xl">
+        Hey this is me!
+      </h1>
       {showEditButton ? (
-        <button type="button" onClick={() => onClickEdit()}>
+        <button
+          className="text-white bg-blue-500 hover:bg-green-700 px-2 py-2 rounded float-right mr-6"
+          type="button"
+          onClick={() => onClickEdit()}
+        >
           Edit
         </button>
       ) : null}
@@ -55,11 +61,21 @@ export default function Introduction() {
         />
       ) : null}
       {hasInitialized ? (
-        <div>
-          <img src={intro.imageUrl} alt="No img :)" width="400" height="500" />
-          <p>{intro.description}</p>
+        <div className="border-2 border-amber-300/100 bg-amber-200/100 p-4 rounded">
+          <img
+            className="text-left font-semibold text-3xl"
+            src={intro.imageUrl}
+            alt="No img :)"
+            width="400"
+            height="500"
+          />
+          <p className="text-left mb-4 font-semibold text-2xl">
+            {intro.description}
+          </p>
         </div>
-      ) : null}
+      ) : (
+        <div className="h-screen" />
+      )}
     </div>
   );
 }

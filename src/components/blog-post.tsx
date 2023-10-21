@@ -30,7 +30,7 @@ export default function BlogPost({ post }: { post: Post }) {
   };
 
   return (
-    <div>
+    <div className="m-4 border-2 border-fuchsia-300/100 bg-fuchsia-200/100 p-4 rounded">
       {isEditPost ? (
         <MediaInput
           shouldShowTitleInput
@@ -42,10 +42,22 @@ export default function BlogPost({ post }: { post: Post }) {
         />
       ) : (
         <div>
-          <img src={post.imageUrl} alt="No img :)" width="400" height="500" />
-          <h5>{post.title}</h5>
-          <p>{post.description}</p>
-          <button type="button" onClick={() => onEditPost()}>
+          <img
+            className="text-left font-semibold text-3xl"
+            src={post.imageUrl}
+            alt="No img :)"
+            width="400"
+            height="500"
+          />
+          <h1 className="text-center mb-4 font-bold text-2xl">{post.title}</h1>
+          <p className="text-left mb-4 font-regular text-xl">
+            {post.description}
+          </p>
+          <button
+            className="text-white bg-orange-600 hover:bg-orange-700 px-2 py-2 ml-auto rounded"
+            type="button"
+            onClick={() => onEditPost()}
+          >
             Edit Post
           </button>
         </div>
