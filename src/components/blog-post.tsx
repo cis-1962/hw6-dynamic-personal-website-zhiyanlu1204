@@ -60,6 +60,7 @@ export default function BlogPost({ post }: { post: Post }) {
           >
             Edit Post
           </button>
+          <p className="text-right font-bold text-m">{post.id}</p>
         </div>
       )}
     </div>
