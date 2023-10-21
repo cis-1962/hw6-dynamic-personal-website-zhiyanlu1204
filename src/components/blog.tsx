@@ -58,6 +58,7 @@ export default function Blog() {
           </div>
         ))}
       </div>
+      {postsArray.length === 0 ? <div className="h-80" /> : null}
     </div>
   );
 }

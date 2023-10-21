@@ -75,7 +75,7 @@ export default function Introduction() {
           </p>
         </div>
       ) : (
-        <div className="h-screen" />
+        <div className="h-80" />
       )}
     </div>
   );
